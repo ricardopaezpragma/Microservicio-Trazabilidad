@@ -21,12 +21,14 @@ public class TraceabilityController {
         traceabilityHandler.saveTraceability(traceabilityDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
     @GetMapping("/{customerId}")
-    public ResponseEntity<List<TraceabilityDto>> getTraceabilityByCustomerId(@PathVariable int customerId){
+    public ResponseEntity<List<TraceabilityDto>> getTraceabilityByCustomerId(@PathVariable int customerId) {
         return ResponseEntity.ok(traceabilityHandler.getTraceabilityByCustomerId(customerId));
     }
-    @GetMapping("/sisas")
-    public ResponseEntity<String> cosa(){
-        return ResponseEntity.ok("sisas");
+
+    @GetMapping("/order/{orderId}")
+    public ResponseEntity<List<TraceabilityDto>> getTraceabilityByOrderId(@PathVariable int orderId) {
+        return ResponseEntity.ok(traceabilityHandler.getTraceabilityByOrderId(orderId));
     }
 }

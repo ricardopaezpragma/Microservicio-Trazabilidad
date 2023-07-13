@@ -2,6 +2,7 @@ package com.pragma.traceability.infrastructure.output.mongodb.adapter;
 
 import com.pragma.traceability.domain.model.Traceability;
 import com.pragma.traceability.domain.spi.ITraceabilityPersistencePort;
+import com.pragma.traceability.infrastructure.exception.TraceabilityException;
 import com.pragma.traceability.infrastructure.output.mongodb.mapper.TraceabilityEntityMapper;
 import com.pragma.traceability.infrastructure.output.mongodb.repository.ITraceabilityRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,14 @@ public class TraceabilityJpaAdapter implements ITraceabilityPersistencePort {
     @Override
     public List<Traceability> getTraceabilityByCustomerId(int customerId) {
         return traceabilityRepository.findByCustomerId(customerId)
+                .stream()
+                .map(this.traceabilityEntityMapper::toModel)
+                .toList();
+    }
+
+    @Override
+    public List<Traceability> getTraceabilityByOrderId(int orderId) {
+        return traceabilityRepository.findByOrderId(orderId)
                 .stream()
                 .map(this.traceabilityEntityMapper::toModel)
                 .toList();

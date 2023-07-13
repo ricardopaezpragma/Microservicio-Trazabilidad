@@ -31,4 +31,12 @@ public class TraceabilityHandlerImp implements ITraceabilityHandler {
                 .map(this.traceabilityDtoMapper::toDto)
                 .toList();
     }
+
+    @Override
+    public List<TraceabilityDto> getTraceabilityByOrderId(int orderId) {
+        return traceabilityServicePort.getTraceabilityByOrderId(orderId)
+                .stream()
+                .map(this.traceabilityDtoMapper::toDto)
+                .toList();
+    }
 }

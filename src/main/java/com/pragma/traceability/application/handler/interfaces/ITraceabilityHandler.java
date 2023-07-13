@@ -7,4 +7,6 @@ import java.util.List;
 public interface ITraceabilityHandler {
     void saveTraceability(TraceabilityDto traceabilityDto);
     List<TraceabilityDto> getTraceabilityByCustomerId(int customerId);
+
+    List<TraceabilityDto> getTraceabilityByOrderId(int orderId);
 }
